@@ -30,5 +30,27 @@ The system provides a user-friendly interface for browsing shows and venues, mak
 - Booking Show Tickets
 - Searching for Shows/Venues
 
+## How to Run the Project
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/Kanishk-Mishra/TicketShow.git
+   cd TicketShow
+   ```
+2. **Create a Virtual Environment and Activate it**:
+   ```sh
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use: venv\Scripts\activate
+   ```
+3. **Install Dependencies**:
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. **Run the Application**:
+   ```sh
+   python3 app.py
+   ```
+5. **Access the Application**:
+   Open `http://127.0.0.1:5000/` in your browser.
+
 ## Conclusion
 The TicketShow Ticket Booking Platform is a modular and extensible web-based application developed using Flask. It follows the MVC architecture and allows seamless management of movie ticket bookings, making it easy to add new features as required.
