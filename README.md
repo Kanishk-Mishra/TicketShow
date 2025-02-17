@@ -1,6 +1,6 @@
 # TicketShow
 
-[![Watch the video](https://i.ibb.co/r2HsY0D2/Screenshot-502.png)](https://youtu.be/SPLCWM50Lg8?si=vZQtm5_Y7yhq8I7P)
+[![Watch the video](https://i.ibb.co/wFSw6zv8/Screenshot-502.jpg)](https://youtu.be/SPLCWM50Lg8?si=vZQtm5_Y7yhq8I7P)
 
 ## Introduction
 The TicketShow is a web-based application developed using Flask, a Python-based web framework. The objective of this application is to provide a platform for users to book movie tickets for various shows in different theatres and for admins to manage theatres, locations, movies, and timeframes.
