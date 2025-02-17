@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Allocations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #192841;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        .logo {
+            height: 80px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header img {
+            height: 80px;
+        }
+        .footer {
+            background-color: #808080;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #b7b5b5;
+        }
+        th {
+            background-color: #54585e;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0069d9;
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='TicketShow_logo.png') }}" alt="Logo">
+        <div class="container">
+            <div>
+                <a href="/admin/all_venues">Venues</a>
+                <a href="/admin/all_shows">Shows</a>
+                <a href="/admin/all_timeframes">Timeframes</a>
+                <a href="/admin/allocations">Allocations</a>
+                <a href="/admin/allotments">Allotments</a>
+                <a href="/admin">Home</a>
+                <a href="/admin/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    {% if shows|length == 0%}
+    <h1>No show is allocated to {{ v.Name }}, {{ v.Place }}!</h1>
+    <div>
+        <a href="/admin/all_shows">+Alocate a Show</a>  
+    </div>
+
+    {% else %}
+    <h1>List of all the shows available at {{ v.Name }}, {{ v.Place }}</h1>
+    <h3>INSTRUCTIONS:</h3>
+    1. Click on the movie name to allocate another venue.<br>
+    2. Click on the allocation Id to allot it a timeframe.<br>
+     <br>
+    <table>
+        <tr>
+            <th>Allocation Id</th>
+            <th>Show Id</th>
+            <th>Name</th>
+        </tr>
+        {% for i in lis %}
+            <tr>
+                <td><a href="/admin/allocations/allot_timeframes/{{ allocs[i] }}">{{ allocs[i] }}</a></td>
+                <td>{{ shows[i].S_id }}</td>
+                <td><a href="/admin/all_shows/allocate_venues/{{ shows[i].S_id }}">{{ shows[i].Name }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+<div class="footer">
+    &copy; 2023 TicketShow. All rights reserved.
+</div>
+</html>

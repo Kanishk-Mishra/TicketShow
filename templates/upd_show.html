@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Shows</title>
+    <style>
+        body {
+             font-family: Arial, sans-serif;
+             background-color: #f5f5f5;
+             text-align: left;
+             display: flex;
+             flex-direction: column;
+             margin-bottom: 5;
+             min-height: 100vh;
+         }
+         .header {
+             display: flex;
+             text-align: center;
+             align-items: center;
+             justify-content: space-between;
+             background-color: #192841;
+             color: #fff;
+             padding: 10px 20px;
+         }
+         .logo {
+             height: 80px;
+         }
+         .header h1 {
+             margin: 0;
+         }
+         .header img {
+             height: 80px;
+         }
+         .footer {
+             background-color: #808080;
+             color: #fff;
+             padding: 10px 20px;
+             text-align: center;
+             margin-top: auto;
+         }
+         h1 {
+             text-align: center;
+             margin-top: 50px;
+             margin-bottom: 0;
+         }
+         h3 {
+            text-align: center;
+         }
+         form {
+             margin: 40px auto;
+             padding: 20px;
+             background-color: #fff;
+             box-shadow: 0 0 10px rgba(0,0,0,0.3);
+             border-radius: 5px;
+             max-width: 500px;
+         }
+         input[type="submit"] {
+             display: block;
+             background-color: #007bff;
+             color: white;
+             border: none;
+             display: block;
+             margin: 0 auto;
+             text-align: center;
+             align-items: center;
+             padding: 10px 20px;
+             text-decoration: none;
+             border-radius: 5px;
+         }
+         input[type="submit"]:hover {
+             background-color: #0069d9;
+         }
+         label {
+             display: block;
+             margin-bottom: 5px;
+         }
+         input[type="text"],
+         input[type="number"] {
+             width: 95%;
+             padding: 10px;
+             border-radius: 5px;
+             border: 1px solid #ccc;
+             margin-bottom: 10px;
+             font-size: 16px;
+         }
+         a {
+             display: inline-block;
+             background-color: #007bff;
+             color: white;
+             text-align: center;
+             padding: 10px 20px;
+             text-decoration: none;
+             margin-top: 10px;
+             margin-right: 10px;
+             margin-bottom: 10px;
+             border-radius: 5px;
+         }
+         a:hover {
+             background-color: #0069d9;
+         }
+         .container {
+             display: flex;
+             justify-content: flex-end;
+             align-items: center;
+             margin-top: 20px;
+         }
+     </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='TicketShow_logo.png') }}" alt="Logo">
+        <div class="container">
+            <div>
+                <a href="/admin/all_venues">Venues</a>
+                <a href="/admin/all_shows">Shows</a>
+                <a href="/admin/all_timeframes">Timeframes</a>
+                <a href="/admin/allocations">Allocations</a>
+                <a href="/admin/allotments">Allotments</a>
+                <a href="/admin">Home</a>
+                <a href="/admin/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <h1>Update the details of the show: {{ s.Name }}</h1>
+    <h3>Note- Please retype the unchanged attribute-values carefully.</h3>
+    <form action="/admin/all_shows/upd_show/{{ s.S_id }}" method="post">
+        
+        <label for="s_name">Show Name</label>
+        <input type="text" id="s_name" name="s_name" required><br>
+
+        <label for="ratings">Ratings</label>
+        <input type="number" id="ratings" name="ratings" step="0.1" required><br>
+        
+        <label for="tags">Tags (use commas to sperate tags)</label>
+        <input type="text" id="tags" name="tags" required><br>
+
+        <label for="ticket_price">Ticket Price (in INR)</label>
+        <input type="number" id="ticket_price" name="ticket_price" step="0.01" required><br>
+                
+        <input type="submit" value="Update"> 
+    </form>
+</body>
+<div class="footer">
+    &copy; 2023 TicketShow. All rights reserved.
+</div>
+</html>

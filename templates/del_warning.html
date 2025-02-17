@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning</title>
+    <style>
+        body {
+            background-color: #f8d7da;
+            color: #721c24;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        h1, h3 {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .warning-box {
+            border: 2px solid #721c24;
+            border-radius: 5px;
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        
+        .warning-box p {
+            margin: 1rem 0;
+        }
+        
+        .warning-box a {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background-color: #dc3545;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;  
+        }
+        
+        .warning-box a:hover {
+            background-color: #c82333;
+        }
+        input[type="submit"]{
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1.2rem 2rem;
+            border: none;
+            background-color: #dc3545;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        input[type="submit"]:hover {
+             background-color: #c82333;
+         }
+    </style>
+</head>
+<body>
+    <div class="warning-box">
+        <h1>Warning</h1>
+        <p>Are you sure you want to delete the {{what}}: {{id}}?</p>
+        <p><strong>This action can't be undone.</strong></p>
+        <form action={{form_act}} method="post">                
+            <a href={{No}}>No</a>
+            <input type="submit" value="Yes"> 
+        </form>
+    </div>
+</body>
+</html>

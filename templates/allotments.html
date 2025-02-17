@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allotments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #192841;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        .logo {
+            height: 80px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header img {
+            height: 80px;
+        }
+        .footer {
+            background-color: #808080;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #b7b5b5;
+        }
+        th {
+            background-color: #54585e;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
+        h3 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0069d9;
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='TicketShow_logo.png') }}" alt="Logo">
+        <div class="container">
+            <div>
+                <a href="/admin/all_venues">Venues</a>
+                <a href="/admin/all_shows">Shows</a>
+                <a href="/admin/all_timeframes">Timeframes</a>
+                <a href="/admin/allocations">Allocations</a>
+                <a href="/admin/allotments">Allotments</a>
+                <a href="/admin">Home</a>
+                <a href="/admin/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    {% if allocs|length == 0%}
+    <h1>No allotments found!</h1>
+    <h3>An Allotmnet means a timeframe that is allotted to a venue-show pair.</h3>
+    <div>
+        <a href="/admin/allocations">+Allot an Allocation</a>  
+    </div>
+
+    {% else %}
+    <h1>Allotment list</h1>
+    <p><strong>List of all the timeframes and the venue-show pairs allotted to each other.</strong></p>
+    <h3>INSTRUCTIONS:</h3>
+    <p>1. Click on the allocation id to allot another timeframe<br>
+    2. Click on the show name to allocate another venue<br>
+    3. Click on the venue-name to see the list of available shows<br>
+    4. Click on the timeframe to see the allotted venue-show pair(allocation).</p>
+    <table>
+        <tr>
+            <th>Allotment Id</th>
+            <th>Allocation Id</th>
+            <th>Show</th>
+            <th>Venue</th>
+            <th>Alloted Timeframe</th>
+            <th>Actions</th>
+        </tr>
+        {% for allot in allots %}
+            {% for timeframe in timeframes %}
+                {% if allot.T_id == timeframe.T_id %}
+                    {% for alloc in allocs %}
+                        {% if allot.A_id == alloc.A_id %}
+                            {% for show in shows %}
+                                {% if alloc.S_id == show.S_id %}
+                                    {% for venue in venues %}
+                                        {% if alloc.V_id == venue.V_id %}
+                                            <tr>
+                                                <td>{{ allot.Allot_id }}</td>
+                                                <td><a href="/admin/allocations/allot_timeframes/{{ alloc.A_id }}">{{ alloc.A_id }}</a></td>
+                                                <td><a href="/admin/all_shows/allocate_venues/{{ show.S_id }}">{{ show.Name }}</a></td>
+                                                <td><a href="/admin/all_venues/view_allocations/{{ venue.V_id }}">{{ venue.Name }}, {{venue.Place}}</a></td>
+                                                <td><a href="/admin/all_timeframes/view_allotments/{{ timeframe.T_id }}">{{timeframe.Start_time}} to {{timeframe.End_time}}</a></td>
+                                                <td>
+                                                    <a type = "button" href="/admin/allotments/del_allotment/{{ allot.Allot_id }}">Remove</a>
+                                                </td>                          
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+<div class="footer">
+    &copy; 2023 TicketShow. All rights reserved.
+</div>
+</html>

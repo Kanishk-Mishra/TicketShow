@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+		    text-align: center;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #192841;
+		    color: #fff;
+            padding: 10px 20px;
+        }
+        .logo {
+            height: 80px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header img {
+        	height: 80px;
+        }
+        .footer {
+            background-color: #808080;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+		    margin-top: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: center;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
+        h3 {
+            margin-top: 20px;
+            text-align: center;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0069d9;
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='TicketShow_logo.png') }}" alt="Logo">
+        <div class="container">
+            <div>
+                <a href="/user">Home</a>
+                <a href="/user/movies">All Shows</a>
+                <a href="/user/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</body>
+    <h1>Available Shows</h1>
+    <h3>Click on the show name to book a ticket.</h3>
+<body>    
+    <table>
+        {% for s in shows %}
+            <tr>
+                <td><a href="/user/movies/view_show/{{ s }}">{{ s }}</a></td>
+            </tr>
+        {% endfor %}
+        {% for f in films %}
+            <tr>
+                <td><a href="/user/movies/view_show/{{ f }}">{{ f }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+<div class="footer">
+    &copy; 2023 TicketShow. All rights reserved.
+</div>
+</html>

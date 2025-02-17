@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    .header {
+            display: flex;
+		    text-align: center;
+            align-items: center;
+            background-color: #192841;
+		    color: #fff;
+            padding: 10px 20px;
+        }
+    .logo {
+            height: 80px;
+        }
+    .header h1 {
+            margin: 0;
+        }
+    .header img {
+        	height: 80px;
+        }
+    .footer {
+            background-color: #808080;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+		    margin-top: auto;
+        }
+    h1 {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    a {
+        display: block;
+        margin: 10px auto;
+        width: 300px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        text-decoration: none;
+        color: #007bff;
+        font-size: 18px;
+        font-weight: bold;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='TicketShow_logo.png') }}" alt="Logo">
+    </div>
+    <h1>Welcome {{admin}}</h1>
+    <a type = "button" href="/admin/all_shows">View/Modify Shows</a>
+    <a type = "button" href="/admin/all_venues">View/Modify Venues</a>
+    <a type = "button" href="/admin/all_timeframes">View/Modify Timeframes</a>
+    <a type = "button" href="/admin/allocations">View/Modify Allocations</a>
+    <a type = "button" href="/admin/allotments">View/Modify Allotments</a>
+    <a type = "button" href="/admin/logout">Logout</a>
+</body>
+<div class="footer">
+    &copy; 2023 TicketShow. All rights reserved.
+</div>
+</html>

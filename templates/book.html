@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #192841;
+            color: #fff;
+            padding: 10px 20px;
+        }
+        .logo {
+            height: 80px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header img {
+            height: 80px;
+        }
+        .footer {
+            background-color: #808080;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            margin-top: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: center;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #b7b5b5;
+        }
+        th {
+            background-color: #54585e;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 0;
+        }
+         h3 {
+            margin-top: 20px;
+            text-align: center;
+        }
+        form {
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            border-radius: 5px;
+            max-width: 500px;
+        }
+        input[type="submit"] {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 95%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0069d9;
+        }
+        .container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 20px;
+        }
+</style>
+</head>
+<body>
+    <div class="header">
+        <img src="{{ url_for('static', filename='TicketShow_logo.png') }}" alt="Logo">
+        <div class="container">
+            <div>
+                <a href="/user">Home</a>
+                <a href="/user/movies">All Shows</a>
+                <a href="/user/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <h1>Yes! Seat is available</h1>
+    <table>
+        <tr>
+            <th>Show Id</th>
+            <td>{{s.S_id}}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{s.Name}}</td>
+        </tr>
+        <tr>
+            <th>Ratings</th>
+            <td>{{s.Rating}}</td>
+        </tr>
+        <tr>
+            <th>Tags</th>
+            <td>{{s.Tags}}</td>
+        </tr>
+        <tr>
+            <th>Theatre Name</th>
+            <td>{{v.Name}}</td>
+        </tr>
+        <tr>
+            <th>Place Name</th>
+            <td>{{v.Place}}</td>
+        </tr>
+        <tr>
+            <th>Timeframe</th>
+            <td>{{t.Start_time}}-{{t.End_time}}</td>
+        </tr>
+        <tr>
+            <th>Ticket Price (₹)</th>
+            <td>{{s.TicketPrice}}</td>
+        </tr>            
+    </table>
+    <form action="/user/city/see_show/book/{{ allot.Allot_id }}" method="post">
+    <h3>Kindly refill your username to book your seat.</h3>  
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <input type="submit" value="Submit & Pay">
+    </form>
+</body>
+<div class="footer">
+    &copy; 2023 TicketShow. All rights reserved.
+</div>
+</html>
